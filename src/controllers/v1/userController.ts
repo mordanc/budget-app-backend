@@ -5,15 +5,17 @@ import mongoose, { Schema } from 'mongoose';
 import { UserSchema } from '../../schemas/user';
 
 export const createNewUser = async (req: Request, res: Response) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { userId, lastName, email, password } = req.body;
+
+    if (!userId) res.status(500).send('provide a name');
 
     // generate user's Friend code
-    let friendCode;
-    do {
-        friendCode = generateFriendCode();
-    } while (await checkDB(friendCode));
+    // let friendCode;
+    // do {
+    //     friendCode = generateFriendCode();
+    // } while (await checkDB(friendCode));
 
-    const [response, error] = await handlePromise(createUser(firstName));
+    const [response, error] = await handlePromise(createUser(userId));
 
     if (error) {
         if (error.code === 11000 || error.code === 11001) {

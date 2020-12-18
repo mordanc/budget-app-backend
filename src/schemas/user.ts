@@ -1,23 +1,4 @@
-import mongoose, { Schema, SchemaTypes } from 'mongoose';
-
-export const contactSchema: Schema = new Schema(
-    {
-        _id: { type: SchemaTypes.ObjectId, required: true, unique: true },
-        firstName: { type: String, required: true },
-        lastName: { type: String, required: true },
-        colorValue: { type: String, required: true },
-    },
-    { _id: false }
-);
-
-export const messageSchema: Schema = new Schema({
-    messageID: { type: Number, required: true },
-    senderID: { type: SchemaTypes.ObjectId, required: true },
-    senderFirstName: { type: String, required: true },
-    senderLastName: { type: String, required: true },
-    messageContents: { type: String, required: true }, //,
-    // isImageMessage: {type: Boolean, required: true}
-});
+import { Schema } from 'mongoose';
 
 const BudgetHistory: Schema = new Schema({
     description: { type: String, required: true },
